@@ -77,6 +77,7 @@ export const projectsData = [
       "Develop an oriented strategy game, implement a robust back-end architecture and the ability to load a previously saved game",
     tags: ["Java"],
     imageUrl: othelloImg,
+    link: "https://github.com/NotMalek/othello",
   },
   {
     title: "Custom ADT",
@@ -84,6 +85,7 @@ export const projectsData = [
       "Create a custom ADT to store large numbers of objects, optimize storage and time complexities, implement optimized working methods to manipulate the data",
     tags: ["Java"],
     imageUrl: customADTImg,
+    link: "https://github.com/NotMalek/Custom-ADT",
   },
   {
     title: "Simple Data Visualizer",
@@ -91,6 +93,7 @@ export const projectsData = [
       "Benchmark and visualize the performance differences between Pandas and Polars, Use interactive charts to display speed comparisons across various data tasks",
     tags: ["Python", "Pandas", "Polars"],
     imageUrl: dashImg,
+    link: "https://github.com/NotMalek/SimpleDataVisualizer",
   },
 ] as const;
 
