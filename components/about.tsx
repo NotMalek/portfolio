@@ -19,30 +19,18 @@ export default function About() {
     >
       <SectionHeading>About me</SectionHeading>
       <p className="mb-3">
-        After graduating with a degree in{" "}
-        <span className="font-medium">Accounting</span>, I decided to pursue my
-        passion for programming. I enrolled in a coding bootcamp and learned{" "}
-        <span className="font-medium">full-stack web development</span>.{" "}
-        <span className="italic">My favorite part of programming</span> is the
-        problem-solving aspect. I <span className="underline">love</span> the
-        feeling of finally figuring out a solution to a problem. My core stack
-        is{" "}
-        <span className="font-medium">
-          React, Next.js, Node.js, and MongoDB
-        </span>
-        . I am also familiar with TypeScript and Prisma. I am always looking to
-        learn new technologies. I am currently looking for a{" "}
-        <span className="font-medium">full-time position</span> as a software
-        developer.
-      </p>
 
-      <p>
-        <span className="italic">When I'm not coding</span>, I enjoy playing
-        video games, watching movies, and playing with my dog. I also enjoy{" "}
-        <span className="font-medium">learning new things</span>. I am currently
-        learning about{" "}
-        <span className="font-medium">history and philosophy</span>. I'm also
-        learning how to play the guitar.
+        As I near the completion of my degree in {" "}
+        <span className="font-medium">Software Engineering</span>, I have explored multiple facets of the programming world.
+        My journey in software development has been marked by a deep appreciation for the intricacies
+        of coding and a relentless pursuit of innovation. I am proficient in languages like <span className="font-medium">Java, Python, and C#,</span>
+        and frameworks and libraries such as <span className="font-medium">Next.js and React</span>.
+      </p>
+      <p className="mb-3">
+        My passion for technology is matched by my enthusiasm for staying physically active; regular workouts at
+        the gym are a crucial part of my routine. Outside of software projects, I enjoy playing video games.
+        I am also passionate about watchmaking and perfumery. As I prepare to transition from academia to a professional setting, I am looking for a
+        professional experience that will <span className="font-medium">challenge me and allow me to make use of my technical skills.</span>
       </p>
     </motion.section>
   );
