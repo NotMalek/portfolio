@@ -24,7 +24,7 @@ export default function About() {
         <span className="font-medium">Software Engineering</span>, I have explored multiple facets of the programming world.
         My journey in software development has been marked by a deep appreciation for the intricacies
         of coding and a relentless pursuit of innovation. I am proficient in languages like <span className="font-medium">Java, Python, and C#,</span>
-        and frameworks and libraries such as <span className="font-medium">Next.js and React</span>.
+        {" "}and frameworks and libraries such as <span className="font-medium">Next.js and React</span>.
       </p>
       <p className="mb-3">
         My passion for technology is matched by my enthusiasm for staying physically active; regular workouts at
