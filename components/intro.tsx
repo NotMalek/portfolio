@@ -64,7 +64,7 @@ export default function Intro() {
       >
         <span className="font-bold">Hello, I'm Malek.</span> I'm a{" "}
         <span className="font-bold">last year software engineering student</span>
-        . I love programming. My focus is{" "}
+        . My focus is{" "}
         <span className="font-bold">backend development</span>.
       </motion.h1>
 
