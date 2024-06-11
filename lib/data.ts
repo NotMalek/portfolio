@@ -4,6 +4,7 @@ import { LuGraduationCap } from "react-icons/lu";
 import othelloImg from "@/public/othello.png";
 import dashImg from "@/public/dash.png";
 import customADTImg from "@/public/customADT.png";
+import monitorIMG from "@/public/monitor.png";
 
 export const links = [
   {
@@ -72,6 +73,14 @@ export const experiencesData = [
 
 export const projectsData = [
   {
+    title: "CPU and Memory monitor",
+    description:
+        "This project monitors the CPU and memory usage of your system in real-time and displays the data using a dynamically updating graph. The plot is created using Matplotlib and data is gathered using the psutil library.",
+    tags: ["Python", "Matplotlib", "psutil"],
+    imageUrl: monitorIMG,
+    link: "https://github.com/NotMalek/CPU-Memory_Monitor",
+  },
+  {
     title: "Othello Strategy Game",
     description:
       "Develop an oriented strategy game, implement a robust back-end architecture and the ability to load a previously saved game",
@@ -82,7 +91,7 @@ export const projectsData = [
   {
     title: "Custom ADT",
     description:
-      "Create a custom ADT to store large numbers of objects, optimize storage and time complexities, implement optimized working methods to manipulate the data",
+      "Custom ADT to store large numbers of objects, optimize storage and time complexities, implement optimized working methods to manipulate the data",
     tags: ["Java"],
     imageUrl: customADTImg,
     link: "https://github.com/NotMalek/Custom-ADT",
