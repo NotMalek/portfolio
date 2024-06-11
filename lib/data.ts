@@ -76,7 +76,7 @@ export const projectsData = [
   {
     title: "CPU and Memory monitor",
     description:
-        "This project monitors the CPU and memory usage of your system in real-time and displays the data using a dynamically updating graph. The plot is created using Matplotlib and data is gathered using the psutil library",
+        "This project monitors the CPU and memory usage of your system in real-time and displays the data using a dynamically updating graph",
     tags: ["Python", "Matplotlib", "psutil"],
     imageUrl: monitorIMG,
     link: "https://github.com/NotMalek/CPU-Memory_Monitor",
@@ -84,7 +84,7 @@ export const projectsData = [
   {
     title: "SmartClass A.I.ssistant”",
     description:
-        "Develop a CNN using PyTorch to analyze student facial responses in real-time, enhancing AI-driven academic feedback. Train a custom AI model to classify student engagement levels, ensuring lectures adapt dynamically to learners' needs.",
+        "Develop a CNN using PyTorch to analyze student facial responses in real-time",
     tags: ["Python", "Pytorch", "Matplotlib"],
     imageUrl: AIssistantImg,
     link: "https://github.com/abdelh17/SmartClassAIssistant",
