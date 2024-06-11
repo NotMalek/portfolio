@@ -5,6 +5,7 @@ import othelloImg from "@/public/othello.png";
 import dashImg from "@/public/dash.png";
 import customADTImg from "@/public/customADT.png";
 import monitorIMG from "@/public/monitor.png";
+import AIssistantImg from "@/public/AIssistant.png";
 
 export const links = [
   {
@@ -75,10 +76,18 @@ export const projectsData = [
   {
     title: "CPU and Memory monitor",
     description:
-        "This project monitors the CPU and memory usage of your system in real-time and displays the data using a dynamically updating graph. The plot is created using Matplotlib and data is gathered using the psutil library.",
+        "This project monitors the CPU and memory usage of your system in real-time and displays the data using a dynamically updating graph. The plot is created using Matplotlib and data is gathered using the psutil library",
     tags: ["Python", "Matplotlib", "psutil"],
     imageUrl: monitorIMG,
     link: "https://github.com/NotMalek/CPU-Memory_Monitor",
+  },
+  {
+    title: "SmartClass A.I.ssistant”",
+    description:
+        "Develop a CNN using PyTorch to analyze student facial responses in real-time, enhancing AI-driven academic feedback. Train a custom AI model to classify student engagement levels, ensuring lectures adapt dynamically to learners' needs.",
+    tags: ["Python", "Pytorch", "Matplotlib"],
+    imageUrl: AIssistantImg,
+    link: "https://github.com/abdelh17/SmartClassAIssistant",
   },
   {
     title: "Othello Strategy Game",
@@ -116,6 +125,7 @@ export const skillsData = [
   "C",
   "C++",
   "Python",
+  "Pytorch",
   "JavaScript",
   "NodeJS",
   "Erlang",
