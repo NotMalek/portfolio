@@ -74,7 +74,7 @@ export const experiencesData = [
 
 export const projectsData = [
   {
-    title: "CPU/Memory Monitor",
+    title: "CPU-Memory Monitor",
     description:
         "This project monitors the CPU and memory usage of your system in real-time and displays the data using a dynamically updating graph",
     tags: ["Python", "Matplotlib", "psutil"],
