@@ -47,7 +47,7 @@ export const experiencesData = [
     title: "Started Bachelor's in Software Engineering",
     location: "Concordia University - Montreal, QC",
     description:
-        "Winter 2022 marks the beginning of my journey in Software Engineering. I was very excited to learn and grow in this field.",
+        "My journey in Software Engineering starts in winter 2022. I was very excited to learn and grow in this field.",
     icon: React.createElement(LuGraduationCap),
     date: "2022",
   },
@@ -61,6 +61,17 @@ export const experiencesData = [
         "Azure while ensuring scalability and security.",
     icon: React.createElement(CgWorkAlt),
     date: "2023",
+  },
+  {
+    title: "Embedded Software Developer Intern",
+    location: "Caterpillar - Montreal, QC",
+    description:
+        "\n" +
+        "During my fall/winter 2024 internship at Caterpillar, I designed and implemented embedded software applications for autonomous and staffed mining machines using C++ on Linux. " +
+        "I developed automated test procedures to validate software modules, ensuring reliability and performance. " +
+        "Additionally, I reviewed engineering documentation, including requirements, specifications, and validation test plans, while collaborating in a scaled Agile environment.",
+    icon: React.createElement(CgWorkAlt),
+    date: "2024",
   },
   {
     title: "Expected completion of Bachelor's in Software Engineering",
