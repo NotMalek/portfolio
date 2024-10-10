@@ -67,7 +67,7 @@ export const experiencesData = [
     location: "Caterpillar - Montreal, QC",
     description:
         "\n" +
-        "During my fall/winter 2024/2025 internship at Caterpillar, I designed and implemented embedded software applications for autonomous and staffed mining machines using C++ on Linux. " +
+        "During my fall-winter 2024-2025 internship at Caterpillar, I designed and implemented embedded software applications for autonomous and staffed mining machines using C++ on Linux. " +
         "I developed automated test procedures to validate software modules, ensuring reliability and performance. " +
         "Additionally, I reviewed engineering documentation, including requirements, specifications, and validation test plans, while collaborating in a scaled Agile environment.",
     icon: React.createElement(CgWorkAlt),
