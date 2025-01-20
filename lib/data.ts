@@ -85,12 +85,12 @@ export const experiencesData = [
 
 export const projectsData = [
   {
-    title: "CPU-Memory Monitor",
+    title: "System Monitor",
     description:
-        "This project monitors the CPU and memory usage of your system in real-time and displays the data using a dynamically updating graph",
-    tags: ["Python", "Matplotlib", "psutil"],
+        "A lightweight, real-time system monitoring application built with Python, featuring core system metrics visualization and data persistence",
+    tags: ["Python", "psutil", "Matplotlib", "seaborn", "aiosqlite"],
     imageUrl: monitorIMG,
-    link: "https://github.com/NotMalek/CPU-Memory_Monitor",
+    link: "https://github.com/NotMalek/system_monitor",
   },
   {
     title: "SmartClass A.I.ssistant”",
