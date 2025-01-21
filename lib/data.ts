@@ -6,6 +6,7 @@ import dashImg from "@/public/dash.png";
 import customADTImg from "@/public/customADT.png";
 import monitorIMG from "@/public/monitor.png";
 import AIssistantImg from "@/public/AIssistant.png";
+import distributedTaskImg from "@/public/distributedTask.png";
 
 export const links = [
   {
@@ -84,6 +85,14 @@ export const experiencesData = [
 ] as const;
 
 export const projectsData = [
+  {
+    title: "Distributed Task Processing System",
+    description:
+        "A sophisticated distributed task processing system built in Go, featuring auto-scaling workers, work stealing, priority-based scheduling, and comprehensive monitoring capabilities",
+    tags: ["Go", "Redis", "OpenTelemetry"],
+    imageUrl: distributedTaskImg, // Replace this with the correct image variable for the project
+    link: "https://github.com/NotMalek/DistributedTaskProcessingSystem",
+  },
   {
     title: "System Monitor",
     description:
