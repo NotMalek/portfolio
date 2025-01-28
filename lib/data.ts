@@ -89,7 +89,7 @@ export const projectsData = [
     title: "Distributed Task Processing System",
     description:
         "A sophisticated distributed task processing system built in Go, featuring auto-scaling workers, work stealing, priority-based scheduling, and comprehensive monitoring capabilities",
-    tags: ["Go", "Redis", "OpenTelemetry"],
+    tags: ["Go", "Redis", "Next.js", "React"],
     imageUrl: distributedTaskImg, // Replace this with the correct image variable for the project
     link: "https://github.com/NotMalek/DistributedTaskProcessingSystem",
   },
