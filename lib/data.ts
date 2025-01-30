@@ -7,6 +7,7 @@ import customADTImg from "@/public/customADT.png";
 import monitorIMG from "@/public/monitor.png";
 import AIssistantImg from "@/public/AIssistant.png";
 import distributedTaskImg from "@/public/distributedTask.png";
+import virualMachineImg from "@/public/virtualMachine.png";
 
 export const links = [
   {
@@ -86,25 +87,33 @@ export const experiencesData = [
 
 export const projectsData = [
   {
+    title: "Stack-Based Virtual Machine",
+    description:
+        "A sophisticated stack-based virtual machine with assembly language support, featuring real-time execution visualization and interactive debugging through a modern web interface.",
+    tags: ["Rust", "Next.js", "TypeScript", "Tailwind CSS", "WebAssembly"],
+    imageUrl: virualMachineImg,
+    link: "https://github.com/NotMalek/VirtualMachine",
+  },
+  {
     title: "Distributed Task Processing System",
     description:
-        "A sophisticated distributed task processing system built in Go, featuring auto-scaling workers, work stealing, priority-based scheduling, and comprehensive monitoring capabilities",
+        "A distributed system featuring auto-scaling workers, work stealing, priority-based scheduling, and comprehensive monitoring through an interactive dashboard.",
     tags: ["Go", "Redis", "Next.js", "React"],
-    imageUrl: distributedTaskImg, // Replace this with the correct image variable for the project
+    imageUrl: distributedTaskImg,
     link: "https://github.com/NotMalek/DistributedTaskProcessingSystem",
   },
   {
     title: "System Monitor",
     description:
-        "A lightweight, real-time system monitoring application built with Python, featuring core system metrics visualization and data persistence",
+        "A lightweight system monitoring application providing real-time visualization of core system metrics with integrated data persistence capabilities.",
     tags: ["Python", "psutil", "Matplotlib", "seaborn", "aiosqlite"],
     imageUrl: monitorIMG,
     link: "https://github.com/NotMalek/system_monitor",
   },
   {
-    title: "SmartClass A.I.ssistant”",
+    title: "SmartClass A.I.ssistant",
     description:
-        "Develop a CNN using PyTorch to analyze student facial responses in real-time",
+        "An intelligent classroom assistant using PyTorch-based CNN to analyze and interpret student facial responses in real-time lectures.",
     tags: ["Python", "Pytorch", "Matplotlib"],
     imageUrl: AIssistantImg,
     link: "https://github.com/abdelh17/SmartClassAIssistant",
@@ -112,7 +121,7 @@ export const projectsData = [
   {
     title: "Othello Strategy Game",
     description:
-      "Develop an oriented strategy game, implement a robust back-end architecture and the ability to load a previously saved game",
+        "An oriented strategy game with a robust back-end architecture and the ability to load previously saved games.",
     tags: ["Java"],
     imageUrl: othelloImg,
     link: "https://github.com/NotMalek/othello",
@@ -120,7 +129,7 @@ export const projectsData = [
   {
     title: "Custom ADT",
     description:
-      "Custom ADT to store large numbers of objects, optimize storage and time complexities, implement optimized working methods to manipulate the data",
+        "A custom abstract data type implementation optimized for storing and manipulating large numbers of objects with efficient time and space complexities.",
     tags: ["Java"],
     imageUrl: customADTImg,
     link: "https://github.com/NotMalek/Custom-ADT",
@@ -128,7 +137,7 @@ export const projectsData = [
   {
     title: "Simple Data Visualizer",
     description:
-      "Benchmark and visualize the performance differences between Pandas and Polars, Use interactive charts to display speed comparisons across various data tasks",
+        "An interactive dashboard comparing and visualizing performance differences between Pandas and Polars across various data processing tasks.",
     tags: ["Python", "Pandas", "Polars"],
     imageUrl: dashImg,
     link: "https://github.com/NotMalek/SimpleDataVisualizer",
