@@ -8,6 +8,7 @@ import monitorIMG from "@/public/monitor.png";
 import AIssistantImg from "@/public/AIssistant.png";
 import distributedTaskImg from "@/public/distributedTask.png";
 import virualMachineImg from "@/public/virtualMachine.png";
+import quolanceImg from "@/public/quolance.png";
 
 export const links = [
   {
@@ -109,6 +110,14 @@ export const projectsData = [
     tags: ["Python", "psutil", "Matplotlib", "seaborn", "aiosqlite"],
     imageUrl: monitorIMG,
     link: "https://github.com/NotMalek/system_monitor",
+  },
+  {
+    title: "Quolance",
+    description:
+        "A comprehensive freelancing platform built with Spring Boot and React, featuring secure user authentication, real-time collaboration, and end-to-end tested functionality.",
+    tags: ["Spring Boot", "React", "Next.js", "JUnit", "Cypress"],
+    imageUrl: quolanceImg, // Make sure to import this image
+    link: "https://github.com/abdelh17/Quolance",
   },
   {
     title: "SmartClass A.I.ssistant",
