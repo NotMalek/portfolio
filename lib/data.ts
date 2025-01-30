@@ -89,7 +89,7 @@ export const projectsData = [
   {
     title: "Stack-Based Virtual Machine",
     description:
-        "A sophisticated stack-based virtual machine with assembly language support, featuring real-time execution visualization and interactive debugging through a modern web interface.",
+        "A sophisticated stack-based virtual machine with assembly language support, featuring real-time execution visualization.",
     tags: ["Rust", "Next.js", "TypeScript", "Tailwind CSS", "WebAssembly"],
     imageUrl: virualMachineImg,
     link: "https://github.com/NotMalek/VirtualMachine",
@@ -97,7 +97,7 @@ export const projectsData = [
   {
     title: "Distributed Task Processing System",
     description:
-        "A distributed system featuring auto-scaling workers, work stealing, priority-based scheduling, and comprehensive monitoring through an interactive dashboard.",
+        "A distributed system featuring auto-scaling workers, work stealing, priority-based scheduling, and comprehensive monitoring.",
     tags: ["Go", "Redis", "Next.js", "React"],
     imageUrl: distributedTaskImg,
     link: "https://github.com/NotMalek/DistributedTaskProcessingSystem",
