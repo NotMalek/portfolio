@@ -8,7 +8,7 @@ import monitorIMG from "@/public/monitor.png";
 import AIssistantImg from "@/public/AIssistant.png";
 import distributedTaskImg from "@/public/distributedTask.png";
 import virualMachineImg from "@/public/virtualMachine.png";
-import quolanceImg from "@/public/quolance.png";
+import quolanceImg from "@/public/Quolance.png";
 
 export const links = [
   {
