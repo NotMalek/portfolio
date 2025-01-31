@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CommandLine from './CommandLine';
 import CommandOutput from './CommandOutput';
@@ -121,27 +121,13 @@ const Terminal: React.FC = () => {
         };
     }, [mounted, isBooting]);
 
-    // Keyboard handler effect
-    useEffect(() => {
-        setMounted(true);
 
-        const handleKeyPress = (e: KeyboardEvent) => {
-            if (!bootComplete) return;
 
-            if (e.key === 'Enter') {
-                handleCommand(currentCommand);
-            } else if (e.key === 'Backspace') {
-                setCurrentCommand(prev => prev.slice(0, -1));
-            } else if (e.key.length === 1) {
-                setCurrentCommand(prev => prev + e.key);
-            }
-        };
+    const addLine = useCallback((type: 'command' | 'output', content: string | React.ReactNode) => {
+        setLines(prev => [...prev, { id: Date.now(), type, content }]);
+    }, []);
 
-        window.addEventListener('keydown', handleKeyPress);
-        return () => window.removeEventListener('keydown', handleKeyPress);
-    }, [bootComplete, currentCommand]);
-
-    const handleCommand = async (command: string) => {
+    const handleCommand = useCallback(async (command: string) => {
         if (!command.trim()) return;
 
         addLine('command', command);
@@ -161,11 +147,27 @@ const Terminal: React.FC = () => {
         if (terminalRef.current) {
             terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
         }
-    };
+    }, [router, addLine]);
 
-    const addLine = (type: 'command' | 'output', content: string | React.ReactNode) => {
-        setLines(prev => [...prev, { id: Date.now(), type, content }]);
-    };
+    // Keyboard handler effect
+    useEffect(() => {
+        setMounted(true);
+
+        const handleKeyPress = (e: KeyboardEvent) => {
+            if (!bootComplete) return;
+
+            if (e.key === 'Enter') {
+                handleCommand(currentCommand);
+            } else if (e.key === 'Backspace') {
+                setCurrentCommand(prev => prev.slice(0, -1));
+            } else if (e.key.length === 1) {
+                setCurrentCommand(prev => prev + e.key);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyPress);
+        return () => window.removeEventListener('keydown', handleKeyPress);
+    }, [bootComplete, currentCommand, handleCommand]);
 
     if (!mounted) {
         return null;
