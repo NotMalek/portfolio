@@ -28,7 +28,7 @@ export default function Intro() {
                 transition={{
                   type: "tween",
                   duration: 0.2,
-                  delay: 0 // Remove any delays
+                  delay: 0
                 }}
             >
               <Image
@@ -49,7 +49,7 @@ export default function Intro() {
                 transition={{
                   type: "spring",
                   stiffness: 125,
-                  delay: 0, // Remove delay
+                  delay: 0,
                   duration: 0.7,
                 }}
             >
@@ -58,7 +58,54 @@ export default function Intro() {
           </div>
         </div>
 
-        {/* Rest of the component remains the same */}
+          <motion.h1
+              className="mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl"
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+          >
+              <span className="font-bold">Hello, I'm Malek.</span> I'm a{" "}
+              <span className="font-bold">last year software engineering student</span>
+              . My focus is{" "}
+              <span className="font-bold">backend development</span>.
+          </motion.h1>
+
+          <motion.div
+              className="flex flex-col sm:flex-row items-center justify-center gap-2 px-4 text-lg font-medium"
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                  delay: 0.1,
+              }}
+          >
+              <a
+                  className="group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10"
+                  href="/Abdelmalek_Anes_Resume.pdf"
+                  download
+              >
+                  Download Resume{" "}
+                  <HiDownload className="opacity-60 group-hover:translate-y-1 transition" />
+              </a>
+
+              <a
+                  className="bg-white p-4 text-gray-700 hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
+                  href="https://www.linkedin.com/in/abdelmalek-anes-687a16173/"
+                  target="_blank"
+              >
+                  <BsLinkedin />
+              </a>
+
+              <a
+                  className="bg-white p-4 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
+                  href="https://github.com/NotMalek"
+                  target="_blank"
+              >
+                  <FaGithubSquare />
+              </a>
+          </motion.div>
       </section>
   );
 }
+
+
+
+
