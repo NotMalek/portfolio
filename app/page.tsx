@@ -11,8 +11,16 @@ import Projects from "@/components/main/projects";
 import Skills from "@/components/main/skills";
 import { TerminalButton } from "@/components/main/terminal-button";
 import ThemeSwitch from "@/components/main/theme-switch";
+import { Suspense, lazy } from 'react';
 
 const inter = Inter({ subsets: ["latin"] });
+
+// Add a loading component
+const LoadingFallback = () => (
+    <div className="flex items-center justify-center w-full h-32">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 dark:border-white"></div>
+    </div>
+);
 
 export default function Home() {
     return (
@@ -24,12 +32,16 @@ export default function Home() {
                 <ActiveSectionContextProvider>
                     <Header />
                     <main className="flex flex-col items-center px-4">
-                        <Intro />
-                        <TerminalButton />
-                        <About />
-                        <Projects />
-                        <Experience />
-                        <Skills />
+                        <Suspense fallback={<LoadingFallback />}>
+                            <div className="flex flex-col items-center w-full">
+                                <Intro />
+                                <TerminalButton />
+                                <About />
+                                <Projects />
+                                <Experience />
+                                <Skills />
+                            </div>
+                        </Suspense>
                     </main>
                     <Footer />
                     <Toaster position="top-right" />

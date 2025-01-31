@@ -1,12 +1,18 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 export const TerminalButton = () => {
     const router = useRouter();
 
     return (
-        <div className="mt-14 mb-28 flex justify-center">
+        <motion.div
+            className="mt-14 mb-28 flex justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+        >
             <div
                 onClick={() => router.push("/terminal")}
                 className="group relative inline-block cursor-pointer"
@@ -19,6 +25,6 @@ export const TerminalButton = () => {
                     {'>'} DON'T CLICK ME {'<'}
                 </button>
             </div>
-        </div>
+        </motion.div>
     );
 };

@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import CommandLine from './CommandLine';
-import CommandOutput from './CommandOutput';
+import CommandLine from './command-line';
+import CommandOutput from './command-output';
 import { processCommand } from '@/lib/commands';
 import { useRouter } from 'next/navigation';
 
