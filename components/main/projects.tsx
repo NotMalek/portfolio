@@ -21,17 +21,6 @@ export default function Projects() {
         }
     };
 
-    const projectVariants = {
-        initial: { opacity: 0, y: 20 },
-        animate: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.3
-            }
-        }
-    };
-
     return (
         <motion.section
             ref={ref}
@@ -42,14 +31,11 @@ export default function Projects() {
             variants={containerVariants}
         >
             <SectionHeading>My projects</SectionHeading>
-            <motion.div variants={containerVariants}>
+            <motion.div variants={containerVariants} className="flex flex-col gap-3">
                 {projectsData.map((project, index) => (
-                    <motion.div
-                        key={index}
-                        variants={projectVariants}
-                    >
+                    <React.Fragment key={index}>
                         <Project {...project} />
-                    </motion.div>
+                    </React.Fragment>
                 ))}
             </motion.div>
         </motion.section>
