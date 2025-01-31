@@ -1,14 +1,15 @@
-import React from 'react';
-import Link from 'next/link';
+"use client";
+
+import { useRouter } from "next/navigation";
 
 export const TerminalButton = () => {
+    const router = useRouter();
+
     return (
         <div className="mt-14 mb-28 flex justify-center">
-            <a
-                // href="https://terminal.malek.dev" to replace
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-block"
+            <div
+                onClick={() => router.push("/terminal")}
+                className="group relative inline-block cursor-pointer"
             >
                 <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#00ff00] to-[#00cc00] opacity-40 blur transition duration-200 group-hover:opacity-75" />
                 <button
@@ -17,7 +18,7 @@ export const TerminalButton = () => {
                 >
                     {'>'} DON'T CLICK ME {'<'}
                 </button>
-            </a>
+            </div>
         </div>
     );
 };

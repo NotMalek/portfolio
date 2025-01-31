@@ -2,14 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Portfolio styles */
 html {
-  --line-color: #e5e7eb;
+    --line-color: #e5e7eb;
 }
 
 html.dark {
-  --line-color: rgba(255, 255, 255, 0.2);
+    --line-color: rgba(255, 255, 255, 0.2);
 }
 
 .borderBlack {
-  @apply border border-black/10;
+    @apply border border-black/10;
+}
+
+.portfolio-main {
+    @apply bg-gray-50 text-gray-950 dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90;
+}
+
+/* Terminal styles */
+.terminal-page {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+    color: rgb(var(--foreground-rgb));
+    background: rgb(var(--background-start-rgb));
+    min-height: 100vh;
+}
+
+.terminal-cursor {
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.command-line {
+    @apply font-mono text-sm;
+}
+
+.command-output {
+    @apply font-mono text-sm whitespace-pre-wrap;
 }
