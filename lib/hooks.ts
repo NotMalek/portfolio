@@ -13,12 +13,10 @@ export function useSectionInView(sectionName: SectionName) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isAtBottom =
-          Math.ceil(window.innerHeight + window.pageYOffset) >=
-          document.documentElement.scrollHeight;
+      const isAtTop = window.scrollY < 100; // Consider top if within first 100px
 
-      if (isAtBottom) {
-        setActiveSection("Skills");
+      if (isAtTop) {
+        setActiveSection("Home");
         return;
       }
 

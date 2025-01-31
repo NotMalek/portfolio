@@ -37,9 +37,10 @@ export default function Home() {
                                 <Intro />
                                 <TerminalButton />
                                 <About />
+                                <Skills />
                                 <Projects />
                                 <Experience />
-                                <Skills />
+
                             </div>
                         </Suspense>
                     </main>
