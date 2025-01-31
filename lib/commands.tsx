@@ -3,7 +3,6 @@
 import React from 'react';
 import Image from 'next/image';
 import { experiencesData, projectsData, skillsData } from '@/lib/data';
-import resume from '@/public/Abdelmalek_Anes_Resume.pdf';
 
 const COMMANDS = {
     HELP: 'help',
