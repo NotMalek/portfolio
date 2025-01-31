@@ -6,6 +6,7 @@ import CommandLine from './command-line';
 import CommandOutput from './command-output';
 import { processCommand } from '@/lib/commands';
 import { useRouter } from 'next/navigation';
+import MatrixAnimation from './matrix-animation';
 
 interface TerminalLine {
     id: number;
@@ -45,83 +46,33 @@ const Terminal: React.FC = () => {
     const [bootComplete, setBootComplete] = useState(false);
     const [lines, setLines] = useState<TerminalLine[]>([]);
     const [currentCommand, setCurrentCommand] = useState('');
-    const [isBooting, setIsBooting] = useState(true);
+    const [showMatrix, setShowMatrix] = useState(true);
+    const [bootStarted, setBootStarted] = useState(false);
     const terminalRef = useRef<HTMLDivElement>(null);
 
-    // Boot sequence effect
-    useEffect(() => {
-        if (!mounted || !isBooting) return;
+    const startBootSequence = async () => {
+        if (bootStarted) return;
+        setBootStarted(true);
 
-        let currentIndex = 0;
-        let currentCharIndex = 0;
-        let currentLine = '';
-        let lineInterval: NodeJS.Timeout;
+        // Clear any existing lines
+        setLines([]);
 
-        const typeCharacter = async (line: string) => {
-            const chars = line.split('');
-            let result = '';
-
+        for (const line of BOOT_SEQUENCE) {
             setLines(prev => [...prev, {
                 id: Date.now(),
                 type: 'output',
-                content: '',
-                isTyping: true
+                content: line,
             }]);
+            // Very short delay between boot sequence lines
+            await new Promise(resolve => setTimeout(resolve, 50));
+        }
+        setBootComplete(true);
+    };
 
-            for (const char of chars) {
-                result += char;
-                setLines(prev => [
-                    ...prev.slice(0, -1),
-                    {
-                        id: Date.now(),
-                        type: 'output',
-                        content: result,
-                        isTyping: true
-                    }
-                ]);
-                // Extremely short delay between characters
-                await new Promise(resolve => setTimeout(resolve, 2));
-            }
-
-            setLines(prev => [
-                ...prev.slice(0, -1),
-                {
-                    id: Date.now(),
-                    type: 'output',
-                    content: result,
-                    isTyping: false
-                }
-            ]);
-        };
-
-        const showNextLine = async () => {
-            if (currentIndex >= BOOT_SEQUENCE.length) {
-                setIsBooting(false);
-                setBootComplete(true);
-                return;
-            }
-
-            const line = BOOT_SEQUENCE[currentIndex];
-            await typeCharacter(line);
-            currentIndex++;
-
-            // Minimal delays between lines
-            const delay = line.startsWith('[    ') ? 10
-                : line.startsWith('[OK]') ? 20
-                    : line === '' ? 10
-                        : 15;
-
-            setTimeout(showNextLine, delay);
-        };
-
-        showNextLine();
-
-        return () => {
-            clearInterval(lineInterval);
-        };
-    }, [mounted, isBooting]);
-
-
+    const handleMatrixComplete = useCallback(() => {
+        setShowMatrix(false);
+        startBootSequence();
+    }, []);
 
     const addLine = useCallback((type: 'command' | 'output', content: string | React.ReactNode) => {
         setLines(prev => [...prev, { id: Date.now(), type, content }]);
@@ -149,7 +100,6 @@ const Terminal: React.FC = () => {
         }
     }, [router, addLine]);
 
-    // Keyboard handler effect
     useEffect(() => {
         setMounted(true);
 
@@ -174,46 +124,52 @@ const Terminal: React.FC = () => {
     }
 
     return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="fixed inset-0 bg-black text-green-500 font-mono overflow-hidden"
-        >
-            <div
-                ref={terminalRef}
-                className="h-full p-4 overflow-y-auto"
+        <>
+            {showMatrix && (
+                <MatrixAnimation
+                    onComplete={handleMatrixComplete}
+                    duration={800} // Adjust this value to control how long the matrix effect lasts
+                />
+            )}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: showMatrix ? 0 : 1 }}
+                transition={{ duration: 0.5 }}
+                className="fixed inset-0 bg-black text-green-500 font-mono overflow-hidden"
             >
-                <AnimatePresence mode="popLayout">
-                    {lines.map((line) => (
-                        <motion.div
-                            key={line.id}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.2 }}
-                            className="mb-2"
-                        >
-                            {line.type === 'command' ? (
-                                <CommandLine command={line.content as string} />
-                            ) : (
-                                <CommandOutput content={line.content} />
-                            )}
-                            {line.isTyping && (
-                                <span className="animate-pulse">▋</span>
-                            )}
-                        </motion.div>
-                    ))}
-                </AnimatePresence>
+                <div
+                    ref={terminalRef}
+                    className="h-full p-4 overflow-y-auto"
+                >
+                    <AnimatePresence mode="popLayout">
+                        {lines.map((line) => (
+                            <motion.div
+                                key={line.id}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.1 }}
+                                className="mb-2"
+                            >
+                                {line.type === 'command' ? (
+                                    <CommandLine command={line.content as string} />
+                                ) : (
+                                    <CommandOutput content={line.content} />
+                                )}
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
 
-                {bootComplete && (
-                    <div className="flex items-start">
-                        <CommandLine
-                            command={currentCommand}
-                            showCursor
-                        />
-                    </div>
-                )}
-            </div>
-        </motion.div>
+                    {bootComplete && (
+                        <div className="flex items-start">
+                            <CommandLine
+                                command={currentCommand}
+                                showCursor
+                            />
+                        </div>
+                    )}
+                </div>
+            </motion.div>
+        </>
     );
 };
 
