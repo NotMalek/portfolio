@@ -50,7 +50,7 @@ const Terminal: React.FC = () => {
     const [bootStarted, setBootStarted] = useState(false);
     const terminalRef = useRef<HTMLDivElement>(null);
 
-    const startBootSequence = async () => {
+    const startBootSequence = useCallback(async () => {
         if (bootStarted) return;
         setBootStarted(true);
 
@@ -67,12 +67,12 @@ const Terminal: React.FC = () => {
             await new Promise(resolve => setTimeout(resolve, 50));
         }
         setBootComplete(true);
-    };
+    }, [bootStarted]);
 
     const handleMatrixComplete = useCallback(() => {
         setShowMatrix(false);
         startBootSequence();
-    }, []);
+    }, [startBootSequence]);
 
     const addLine = useCallback((type: 'command' | 'output', content: string | React.ReactNode) => {
         setLines(prev => [...prev, { id: Date.now(), type, content }]);
@@ -128,7 +128,7 @@ const Terminal: React.FC = () => {
             {showMatrix && (
                 <MatrixAnimation
                     onComplete={handleMatrixComplete}
-                    duration={800} // Adjust this value to control how long the matrix effect lasts
+                    duration={1200} //how long the matrix effect lasts
                 />
             )}
             <motion.div

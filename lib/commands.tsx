@@ -39,15 +39,16 @@ export const processCommand = async (
                 React.createElement('p', { key: 'exit' }, '  exit             - Return to main website'),
                 React.createElement('p', { key: 'spacer' }, ''),
                 React.createElement('p', { key: 'sections-title' }, 'Available sections for cat:'),
-                React.createElement('p', { key: 'sections' }, '  about, projects, experience, skills'),
+                React.createElement('p', { key: 'sections' }, '  about, skills, projects, experience'),
             ]);
 
         case COMMANDS.LS:
             return React.createElement('div', { className: 'grid grid-cols-4 gap-2' }, [
                 React.createElement('span', { key: 'about', className: 'text-blue-400' }, 'about '),
+                React.createElement('span', { key: 'skills', className: 'text-blue-400' }, 'skills '),
                 React.createElement('span', { key: 'projects', className: 'text-blue-400' }, 'projects '),
                 React.createElement('span', { key: 'experience', className: 'text-blue-400' }, 'experience '),
-                React.createElement('span', { key: 'skills', className: 'text-blue-400' }, 'skills '),
+
             ]);
 
         case COMMANDS.CAT:
