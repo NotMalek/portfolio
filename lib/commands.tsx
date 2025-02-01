@@ -27,6 +27,9 @@ export const processCommand = async (
 
     switch (cmd) {
         case COMMANDS.HELP:
+            if (args.length > 0) {
+                return `help: too many arguments`;
+            }
             return React.createElement('div', { className: 'space-y-1 text-green-500' }, [
                 React.createElement('p', { key: 'title' }, 'Available commands:'),
                 React.createElement('p', { key: 'ls' }, '  ls               - List available sections'),
@@ -43,15 +46,23 @@ export const processCommand = async (
             ]);
 
         case COMMANDS.LS:
+            if (args.length > 0) {
+                return `ls: too many arguments`;
+            }
             return React.createElement('div', { className: 'grid grid-cols-4 gap-2' }, [
                 React.createElement('span', { key: 'about', className: 'text-blue-400' }, 'about '),
                 React.createElement('span', { key: 'skills', className: 'text-blue-400' }, 'skills '),
                 React.createElement('span', { key: 'projects', className: 'text-blue-400' }, 'projects '),
                 React.createElement('span', { key: 'experience', className: 'text-blue-400' }, 'experience '),
-
             ]);
 
         case COMMANDS.CAT:
+            if (args.length === 0) {
+                return 'cat: missing operand';
+            }
+            if (args.length > 1) {
+                return 'cat: too many arguments';
+            }
             const section = args[0];
             switch (section) {
                 case 'about':
@@ -125,28 +136,21 @@ export const processCommand = async (
             }
 
         case COMMANDS.PWD:
+            if (args.length > 0) {
+                return `pwd: too many arguments`;
+            }
             return "/home/malek/portfolio";
 
         case COMMANDS.WHOAMI:
+            if (args.length > 0) {
+                return `whoami: too many arguments`;
+            }
             return "malek";
 
-        case COMMANDS.RESUME:
-            return React.createElement('div', null, [
-                React.createElement('p', { key: 'downloading' }, 'Downloading resume...'),
-                React.createElement('a', {
-                    key: 'download-link',
-                    href: '/Abdelmalek_Anes_Resume.pdf',
-                    download: true,
-                    className: 'hidden',
-                    ref: (element) => {
-                        if (element) {
-                            element.click();
-                        }
-                    }
-                }, null)
-            ]);
-
         case COMMANDS.CONTACT:
+            if (args.length > 0) {
+                return `contact: too many arguments`;
+            }
             return React.createElement('div', { className: 'space-y-2' }, [
                 React.createElement('p', { key: 'github' }, [
                     '• GitHub: ',
@@ -167,7 +171,29 @@ export const processCommand = async (
                 React.createElement('p', { key: 'email' }, '• Email: abdelmalek.anes@outlook.com')
             ]);
 
+        case COMMANDS.RESUME:
+            if (args.length > 0) {
+                return `resume: too many arguments`;
+            }
+            return React.createElement('div', null, [
+                React.createElement('p', { key: 'downloading' }, 'Downloading resume...'),
+                React.createElement('a', {
+                    key: 'download-link',
+                    href: '/Abdelmalek_Anes_Resume.pdf',
+                    download: true,
+                    className: 'hidden',
+                    ref: (element) => {
+                        if (element) {
+                            element.click();
+                        }
+                    }
+                }, null)
+            ]);
+
         case COMMANDS.EXIT:
+            if (args.length > 0) {
+                return `exit: too many arguments`;
+            }
             if (onExit) {
                 onExit();
                 return "Exiting terminal...";
@@ -175,6 +201,9 @@ export const processCommand = async (
             return "Unable to exit terminal";
 
         case COMMANDS.CLEAR:
+            if (args.length > 0) {
+                return `clear: too many arguments`;
+            }
             return null;
 
         default:
