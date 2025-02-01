@@ -65,13 +65,14 @@ const Terminal: React.FC = () => {
 
     // Setup mutation observer for content changes
     useEffect(() => {
-        if (!terminalRef.current) return;
+        const terminal = terminalRef.current;
+        if (!terminal) return;
 
         const scrollToBottom = () => {
-            if (terminalRef.current && !userScrolled) {
+            if (terminal && !userScrolled) {
                 isAutoScrollingRef.current = true;
-                const scrollHeight = terminalRef.current.scrollHeight;
-                terminalRef.current.scrollTo({
+                const scrollHeight = terminal.scrollHeight;
+                terminal.scrollTo({
                     top: scrollHeight,
                     behavior: 'smooth'
                 });
@@ -88,21 +89,21 @@ const Terminal: React.FC = () => {
         });
 
         // Start observing
-        observerRef.current.observe(terminalRef.current, {
+        observerRef.current.observe(terminal, {
             childList: true,
             subtree: true,
             characterData: true
         });
 
         // Add scroll event listener
-        terminalRef.current.addEventListener('scroll', handleScroll);
+        terminal.addEventListener('scroll', handleScroll);
 
         return () => {
             if (observerRef.current) {
                 observerRef.current.disconnect();
             }
-            if (terminalRef.current) {
-                terminalRef.current.removeEventListener('scroll', handleScroll);
+            if (terminal) {
+                terminal.removeEventListener('scroll', handleScroll);
             }
         };
     }, [userScrolled, handleScroll]);
