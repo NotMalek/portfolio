@@ -6,7 +6,7 @@ import CommandLine from './command-line';
 import CommandOutput from './command-output';
 import { processCommand } from '@/lib/commands';
 import { useRouter } from 'next/navigation';
-import MatrixAnimation from './matrix-animation';
+import BootAnimation from './boot-animation';
 
 interface TerminalLine {
     id: number;
@@ -48,23 +48,94 @@ const Terminal: React.FC = () => {
     const [currentCommand, setCurrentCommand] = useState('');
     const [showMatrix, setShowMatrix] = useState(true);
     const [bootStarted, setBootStarted] = useState(false);
+    const [userScrolled, setUserScrolled] = useState(false);
     const terminalRef = useRef<HTMLDivElement>(null);
+    const observerRef = useRef<MutationObserver | null>(null);
+    const isAutoScrollingRef = useRef(false);
+
+    // Handle user scroll events
+    const handleScroll = useCallback(() => {
+        if (!terminalRef.current || isAutoScrollingRef.current) return;
+
+        const { scrollTop, scrollHeight, clientHeight } = terminalRef.current;
+        const isAtBottom = Math.abs(scrollHeight - scrollTop - clientHeight) < 10;
+
+        setUserScrolled(!isAtBottom);
+    }, []);
+
+    // Setup mutation observer for content changes
+    useEffect(() => {
+        if (!terminalRef.current) return;
+
+        const scrollToBottom = () => {
+            if (terminalRef.current && !userScrolled) {
+                isAutoScrollingRef.current = true;
+                const scrollHeight = terminalRef.current.scrollHeight;
+                terminalRef.current.scrollTo({
+                    top: scrollHeight,
+                    behavior: 'smooth'
+                });
+                // Reset auto-scrolling flag after animation
+                setTimeout(() => {
+                    isAutoScrollingRef.current = false;
+                }, 100);
+            }
+        };
+
+        // Create mutation observer
+        observerRef.current = new MutationObserver((mutations) => {
+            scrollToBottom();
+        });
+
+        // Start observing
+        observerRef.current.observe(terminalRef.current, {
+            childList: true,
+            subtree: true,
+            characterData: true
+        });
+
+        // Add scroll event listener
+        terminalRef.current.addEventListener('scroll', handleScroll);
+
+        return () => {
+            if (observerRef.current) {
+                observerRef.current.disconnect();
+            }
+            if (terminalRef.current) {
+                terminalRef.current.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, [userScrolled, handleScroll]);
+
+    // Force scroll on initial mount and lines change
+    useEffect(() => {
+        if (!userScrolled && terminalRef.current) {
+            isAutoScrollingRef.current = true;
+            const scrollHeight = terminalRef.current.scrollHeight;
+            terminalRef.current.scrollTo({
+                top: scrollHeight,
+                behavior: 'instant'
+            });
+            // Reset auto-scrolling flag after scroll
+            setTimeout(() => {
+                isAutoScrollingRef.current = false;
+            }, 100);
+        }
+    }, [lines, userScrolled]);
 
     const startBootSequence = useCallback(async () => {
         if (bootStarted) return;
         setBootStarted(true);
 
-        // Clear any existing lines
         setLines([]);
 
         for (const line of BOOT_SEQUENCE) {
+            await new Promise(resolve => setTimeout(resolve, 50));
             setLines(prev => [...prev, {
-                id: Date.now(),
+                id: Date.now() + Math.random(),
                 type: 'output',
                 content: line,
             }]);
-            // Very short delay between boot sequence lines
-            await new Promise(resolve => setTimeout(resolve, 50));
         }
         setBootComplete(true);
     }, [bootStarted]);
@@ -75,7 +146,11 @@ const Terminal: React.FC = () => {
     }, [startBootSequence]);
 
     const addLine = useCallback((type: 'command' | 'output', content: string | React.ReactNode) => {
-        setLines(prev => [...prev, { id: Date.now(), type, content }]);
+        setLines(prev => [...prev, {
+            id: Date.now() + Math.random(),
+            type,
+            content
+        }]);
     }, []);
 
     const handleCommand = useCallback(async (command: string) => {
@@ -83,6 +158,7 @@ const Terminal: React.FC = () => {
 
         addLine('command', command);
         setCurrentCommand('');
+        setUserScrolled(false); // Reset user scroll when new command is entered
 
         const exitCallback = () => {
             router.push('/');
@@ -91,12 +167,9 @@ const Terminal: React.FC = () => {
         const output = await processCommand(command, exitCallback);
         if (command.toLowerCase() === 'clear') {
             setLines([]);
+            setUserScrolled(false);
         } else if (output) {
             addLine('output', output);
-        }
-
-        if (terminalRef.current) {
-            terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
         }
     }, [router, addLine]);
 
@@ -126,20 +199,25 @@ const Terminal: React.FC = () => {
     return (
         <>
             {showMatrix && (
-                <MatrixAnimation
+                <BootAnimation
                     onComplete={handleMatrixComplete}
-                    duration={1200} //how long the matrix effect lasts
+                    duration={1200}
                 />
             )}
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: showMatrix ? 0 : 1 }}
                 transition={{ duration: 0.5 }}
-                className="fixed inset-0 bg-black text-green-500 font-mono overflow-hidden"
+                className="fixed inset-0 bg-black text-green-500 font-mono overflow-hidden flex flex-col"
             >
                 <div
                     ref={terminalRef}
-                    className="h-full p-4 overflow-y-auto"
+                    className="flex-1 p-4 overflow-y-auto overflow-x-hidden scroll-smooth"
+                    style={{
+                        scrollbarWidth: 'thin',
+                        scrollbarColor: '#22c55e transparent',
+                        WebkitOverflowScrolling: 'touch'
+                    }}
                 >
                     <AnimatePresence mode="popLayout">
                         {lines.map((line) => (

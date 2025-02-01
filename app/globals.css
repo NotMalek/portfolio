@@ -33,15 +33,162 @@ html.dark {
     animation: blink 1s step-end infinite;
 }
 
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
 .command-line {
     @apply font-mono text-sm;
 }
 
 .command-output {
     @apply font-mono text-sm whitespace-pre-wrap;
+}
+
+/* Animation Keyframes */
+@keyframes blink {
+    0%, 100% { opacity: 1; border-color: #4ade80; }
+    50% { opacity: 0; border-color: transparent; }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(-120%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+        filter: brightness(1);
+    }
+    50% {
+        transform: translateY(-15px);
+        filter: brightness(1.2);
+    }
+    100% {
+        transform: translateY(0);
+        filter: brightness(1);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+        text-shadow: 0 0 5px rgba(255, 214, 0, 0.8);
+    }
+    50% {
+        opacity: 0.6;
+        text-shadow: 0 0 15px rgba(255, 214, 0, 0.4);
+    }
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 5px rgba(255, 214, 0, 0.8);
+    }
+}
+
+/* Animation Classes */
+.animate-slideIn {
+    animation: slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-fast {
+    animation: pulse 0.8s ease-in-out infinite;
+}
+
+/* ASCII Art Styling */
+.ascii-art {
+    @apply font-mono whitespace-pre;
+    line-height: 1.2;
+    letter-spacing: 0;
+    transform-origin: center;
+}
+
+.ascii-art.large {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Rocket specific styles */
+.ascii-art.text-yellow-500 {
+    text-shadow: 0 0 8px rgba(255, 214, 0, 0.4);
+}
+
+/* Train specific styles */
+.ascii-art.text-green-500 {
+    text-shadow: 0 0 8px rgba(74, 222, 128, 0.4);
+}
+
+/* Matrix Rain Effect */
+@keyframes matrixFade {
+    0% {
+        opacity: 1;
+        color: #4ade80;
+        text-shadow: 0 0 20px #4ade80;
+    }
+    50% {
+        opacity: 0.8;
+        color: #22c55e;
+        text-shadow: 0 0 15px #22c55e;
+    }
+    100% {
+        opacity: 0.6;
+        color: #16a34a;
+        text-shadow: 0 0 10px #16a34a;
+    }
+}
+
+.matrix-rain {
+    @apply font-mono text-lg;
+    background-color: rgba(0, 0, 0, 0.9);
+    font-weight: bold;
+}
+
+.matrix-rain span {
+    display: inline-block;
+    color: #4ade80;
+    text-shadow:
+            0 0 15px #4ade80,
+            0 0 25px rgba(74, 222, 128, 0.8);
+    animation: matrixFade 2s infinite;
+    opacity: 0.95;
+}
+
+.matrix-rain span:nth-child(even) {
+    color: #22c55e;
+    animation-delay: 0.3s;
+}
+
+.matrix-rain span:nth-child(3n) {
+    color: #16a34a;
+    animation-delay: 0.6s;
+}
+
+/* Lead characters effect */
+.matrix-rain span:first-child {
+    color: #ffffff;
+    text-shadow:
+            0 0 20px rgba(255, 255, 255, 1),
+            0 0 30px rgba(255, 255, 255, 0.8);
+    opacity: 1;
 }

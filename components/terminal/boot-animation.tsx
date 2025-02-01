@@ -7,7 +7,7 @@ interface MatrixAnimationProps {
     duration?: number;
 }
 
-const MatrixAnimation: React.FC<MatrixAnimationProps> = ({
+const BootAnimation: React.FC<MatrixAnimationProps> = ({
                                                              onComplete,
                                                              duration = 800
                                                          }) => {
@@ -99,4 +99,4 @@ const MatrixAnimation: React.FC<MatrixAnimationProps> = ({
     );
 };
 
-export default MatrixAnimation;
+export default BootAnimation;
