@@ -50,7 +50,7 @@ export default function About() {
           <p className="mb-3">
             My passion for technology is matched by my enthusiasm for staying physically active; regular workouts at
             the gym are a crucial part of my routine. Outside of software projects, I enjoy playing video games.
-            I am also passionate about watchmaking and perfumery. As I prepare to transition from academia to a professional setting, I am looking for a
+            As I prepare to transition from academia to a professional setting, I am looking for a
             professional experience that will <span className="font-medium">challenge me and allow me to make use of my technical skills.</span>
           </p>
         </motion.div>
